@@ -1,0 +1,31 @@
+#bg-video {
+    top: 0px;
+    left: 0px;
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+}
+
+#brand-img {
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+    margin-top: -2px;
+}
+
+.jumbovidtext {
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+}
+
+.jumbotron {
+    background: rgba(128,128,128,0.5);
+    margin: 25vh 0;
+    overflow-y: hidden;
+}
+
+main {
+    background: #fff;
+    padding: 2em;
+}
