@@ -17,6 +17,7 @@ class Bdd
         try {
             // Connexion à la bdd
             $this->pdo = new PDO("mysql:host=localhost;dbname=wac_exam;charset=utf8", "phpmyadmin", "alohastitch");
+            // $this->pdo = new PDO("mysql:host=mysql;dbname=epitech_tp;charset=utf8", "root", "root");
         } catch (Exception $e) {
             die("Erreur " . $e->getMessage());
         }

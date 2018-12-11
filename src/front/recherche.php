@@ -1,3 +1,6 @@
+<?php 
+include("../core/Bdd.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,15 +51,16 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
     </form>
     <div class="box">
-        <?php
-        if ($_POST["titre"]):
-            include "../core/Film.php";
-            $film = new Film();
+        <?php 
+            if ($_POST["titre"]):
+                include "../core/Film.php";
+                $film = new Film();
 
-            foreach ($film->getFilmsByTitre($_POST["titre"], (int)$_POST["genre"]) as $film):
-                echo $film["titre"] . "<br>";
-            endforeach;
-        endif; ?>
+                foreach ($film->search($_POST["titre"], (int)$_POST["genre"]) as $film):
+                    echo $film["titre"] . "<br>";
+                endforeach;
+            endif;
+        ?>
     </div>
 </div>
 

@@ -1,5 +1,4 @@
 <?php
-include("Bdd.php");
 
 class Genre extends Bdd {
 
