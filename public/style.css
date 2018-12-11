@@ -29,3 +29,17 @@ main {
     background: #fff;
     padding: 2em;
 }
+
+.container {
+    text-align: center;
+}
+
+.box {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 40px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px 30px cadetblue ;
+    background-color: beige;
+}

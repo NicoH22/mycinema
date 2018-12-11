@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php require("src/back/PDO.php");?>
     <meta charset="UTF-8">
     <title>My Cinema</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="public/style.css"/>
 </head>
 <body>
 
@@ -21,7 +22,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li class="nav-item">
-                    <a class="nav-link" href="recherche.php">Recherche</a>
+                    <a class="nav-link" href="src/front/recherche.php">Recherche</a>
                 <li>
 
                 </li>
@@ -42,7 +43,7 @@
                 <div class="center jumbovidtext text-center">
                     <h1 class="txtjumbo">MYCINEMA</h1>
                     <p class="txtjumbo">La recherche efficace des films.</p>
-                    <p><a class="btn center btn-primary btn-lg" id="botjumbo" href="recherche.php" role="button">Jeter un oeil...</a></p>
+                    <p><a class="btn center btn-primary btn-lg" id="botjumbo" href="src/front/recherche.php" role="button">Jeter un oeil...</a></p>
                 </div>
             </div>
 
