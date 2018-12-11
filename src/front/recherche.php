@@ -1,6 +1,6 @@
 <?php
-require("../core/PDO.php");
-$bdd = new Bdd;
+include "../core/Film.php";
+$film = new Film();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,15 +36,16 @@ $bdd = new Bdd;
 <!--CONTAINER-->
 
 <div class="container">
-    <form class="form-inline my-2 my-lg-0" action="recherche.php" method="post">
-        <input name="TEST" class="form-control mr-sm-2" type="search" placeholder="Recherche">
+    <form class="form-inline my-2 my-lg-0" action="recherche.php" method="POST">
+        <input name="titre" class="form-control mr-sm-2" type="search" placeholder="Recherche">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
-        <?php var_dump($_POST)?>
     </form>
     <div class="box">
-        <?php include "../back/films.php";
-        $films = new film();
-        ?>
+        <?php if ($_POST["titre"]):
+            foreach ($film->getFilmsByTitre($_POST["titre"]) as $film):
+                echo $film["titre"] . "<br>";
+            endforeach;
+        endif; ?>
     </div>
 </div>
 
