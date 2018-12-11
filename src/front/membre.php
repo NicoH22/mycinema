@@ -1,3 +1,7 @@
+<?php
+require("../core/PDO.php");
+$bdd = new Bdd;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,46 +25,28 @@
             <li class="nav-item active">
                 <a class="nav-link" href="../../index.php">Home<span class="sr-only">(current)</span></a>
             </li class="nav-item">
-            <a class="nav-link" href="recherche.php">Recherche</a>
+                <a class="nav-link" href="recherche.php">Recherche</a>
             <li>
-
+            <li>
+                <a class="nav-link" href="membre.php">Membres</a>
             </li>
         </ul>
     </div>
 </nav>
 
-<!--CONTAINER-->
+    <!--CONTAINER-->
+    <div class="container">
+        <form class="form-inline my-2 my-lg-0" action="recherche.php" method="post">
+            <input name="TEST" class="form-control mr-sm-2" type="search" placeholder="Recherche">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+            <?php var_dump($_POST)?>
+        </form>
 
-<div class="container">
-    <form class="form-inline my-2 my-lg-0" action="recherche.php" method="POST">
-        <input name="titre" class="form-control mr-sm-2" type="search" placeholder="Recherche">
-        <select name="genre">
-            <option selected value="-1">Selectionnez un genre...</option>
-            <?php
-                include "../core/Genre.php";
-                $genre = new Genre();
-
-                foreach ($genre->getGenres() as $genre):
-                    echo "<option value=\"".$genre["id_genre"]."\">". $genre["nom"] ."</option>";
-                endforeach;
+        <div class="box">
+            <?php include "../back/req_membre.php";
             ?>
-        </select>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
-    </form>
-    <div class="box">
-        <?php
-        if ($_POST["titre"]):
-            include "../core/Film.php";
-            $film = new Film();
-
-            foreach ($film->getFilmsByTitre($_POST["titre"], (int)$_POST["genre"]) as $film):
-                echo $film["titre"] . "<br>";
-            endforeach;
-        endif; ?>
-    </div>
+        </div>
 </div>
-
-
 
 </body>
 </html>
