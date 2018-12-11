@@ -12,11 +12,6 @@ class Bdd
         return $this->pdo;
     }
 
-//    function getUsers()
-//    {
-//        $this->pdo;
-//    }
-
     function connect()
     {
         try {

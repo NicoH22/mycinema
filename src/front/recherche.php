@@ -1,5 +1,5 @@
 <?php
-require("../back/PDO.php");
+require("../core/PDO.php");
 $bdd = new Bdd;
 ?>
 <!DOCTYPE html>
@@ -42,12 +42,8 @@ $bdd = new Bdd;
         <?php var_dump($_POST)?>
     </form>
     <div class="box">
-        <?php
-        $req = $bdd->getPDO()->query("SELECT * FROM film WHERE titre LIKE \"%". $_POST["TEST"] ."%\"");
-        while ($res = $req->fetch())
-        {
-        echo $res["titre"]. "<br>";
-        }
+        <?php include "../back/films.php";
+        $films = new film();
         ?>
     </div>
 </div>
