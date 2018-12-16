@@ -49,20 +49,26 @@
                 $membre = new Membre();
                 $abo = new Abonnement();
 
-                if ($_POST["method"] === delete) {
+                if ($_POST["method"] === 'delete') {
                     $membre->deleteById($_POST["id"]);
-                    echo 'oui';
+                }
+
+                if ($_POST["method"] === 'add') {
+                    $membre->addById($_POST["id"], $_POST["add_abo"]);
                 }
 
                 foreach ($fp->search($_POST["nom"]) as $fp):
-                    if ($fp["id_abo"] < 0) {
-                        echo $fp["nom"] . " " . $fp["prenom"];
-                    } else {
-                        echo $fp["nom"] . " " . $fp["prenom"] . " " . $abo->selectById($fp["id_abo"]);
-                    }
+                    echo $fp["nom"] . " " . $fp["prenom"] . " " . $abo->selectById($fp["id_abo"]);
+
                     echo "<form method='post' action='membre.php'>
-                            <input name='id' value='" . $fp["id_abo"] . "' style='display: none'/>
+                            <input name='id' value='" . $fp["id_fiche_perso"] . "' style='display: none'/>
                             <input name='method' value='add' style='display: none'/>
+                            <select name='add_abo'>
+                                <option selected value='-1'>Selectionnez un abonnement</option>";
+                                foreach ($abo->select() as $abo):
+                                    echo "<option value=\"" . $abo["id_abo"] . "\">" . $abo["nom"] . "</option>";
+                                endforeach;
+                    echo "</select>
                             <input type='submit' value='Ajouter un abonnement'/>                           
                         </form>
                         <form method='post' action='membre.php'>

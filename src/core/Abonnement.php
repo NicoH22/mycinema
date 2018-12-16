@@ -9,4 +9,12 @@ class Abonnement extends Bdd {
         return $request->fetch()['nom'];
     }
 
+    public function select() {
+        $query = 'SELECT * FROM abonnement';
+        $request = $this->getPDO()->prepare($query);
+        $request->execute();
+
+        return $request->fetchAll();
+    }
+
 }
