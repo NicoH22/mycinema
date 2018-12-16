@@ -54,6 +54,10 @@ $abo = new Abonnement();
                     $membre->addById($_POST["id"], $_POST["add_abo"]);
                     echo 'Abonnement ajouté : ' . $abo->selectById($_POST["add_abo"]);
                 }
+                if ($_POST["method"] === 'update') {
+                    $membre->updateById($_POST["id"], $_POST["update_abo"], $_POST["current_abo"]);
+                    echo 'Abonnement modifié en : ' . $abo->selectById($_POST["update_abo"]);
+                }
                 if ($_POST["method"] === 'delete') {
                     $membre->deleteById($_POST["id_fiche_perso"], $_POST["id_abo"]);
                     echo 'Abonnement supprimé : ' . $abo->selectById($_POST["id_abo"]);
@@ -62,7 +66,11 @@ $abo = new Abonnement();
                 foreach ($fp->search($_POST["nom"]) as $fp):
                     echo $fp["nom"] . " " . $fp["prenom"] . " " . $abo->selectById($fp["id_abo"]);
 
-                    echo "<form method='post' action='membre.php'>
+                    echo "<form method='get' action='historique.php'>
+                            <input name='id_membre' value='" . $fp["id_membre"] . "' style='display: none'/>
+                            <input type='submit' value='Voir historique'/>
+                        </form>
+                        <form method='post' action='membre.php'>
                             <input name='id' value='" . $fp["id_fiche_perso"] . "' style='display: none'/>
                             <input name='method' value='add' style='display: none'/>
                             <select name='add_abo'>
@@ -74,8 +82,15 @@ $abo = new Abonnement();
                             <input type='submit' value='Ajouter un abonnement'/>                           
                         </form>
                         <form method='post' action='membre.php'>
-                            <input name='id' value='" . $fp["id_abo"] . "' style='display: none'/>
+                            <input name='id' value='" . $fp["id_fiche_perso"] . "' style='display: none'/>
                             <input name='method' value='update' style='display: none'/>
+                            <input name='current_abo' value='" . $fp["id_abo"] . "' style='display: none'/>
+                            <select name='update_abo'>
+                                <option selected value='-1'>Selectionnez un abonnement</option>";
+                                foreach ($abo->select() as $abonnement):
+                                    echo "<option value=\"" . $abonnement["id_abo"] . "\" > " . $abonnement["nom"] . "</option>";
+                                endforeach;
+                    echo "</select>
                             <input type='submit' value='Modifier un abonnement'/>                           
                         </form>
                         <form method='post' action='membre.php'>

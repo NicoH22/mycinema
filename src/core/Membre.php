@@ -23,10 +23,10 @@ class Membre extends Bdd {
         $request->execute([ 'id_membre' => $count["count(*)"]+1, 'id' => $id, 'abo' => $abo ]);
     }
 
-    public function updateById($id, $id_abo) {
-        $query = 'UPDATE membre SET id_abo = NULL WHERE id_fiche_perso = :id AND id_abo = :id_abo';
+    public function updateById($id, $id_abo, $current_id_abo) {
+        $query = 'UPDATE membre SET id_abo = :id_abo WHERE id_fiche_perso = :id AND id_abo = :current_id_abo;';
         $request = $this->getPDO()->prepare($query);
-        $request->execute([ 'id' => $id, 'id_abo' => $id_abo ]);
+        $request->execute([ 'id' => $id, 'id_abo' => $id_abo, 'current_id_abo' => $current_id_abo ]);
     }
     
     public function deleteById($id, $id_abo) {
