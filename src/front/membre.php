@@ -1,4 +1,13 @@
-<?php include("../core/Bdd.php"); ?>
+<?php 
+include "../core/Bdd.php";
+include "../core/Fiche_personne.php";
+include "../core/Membre.php";
+include "../core/Abonnement.php";
+
+$fp = new Fiche_personne();
+$membre = new Membre();
+$abo = new Abonnement();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,20 +50,13 @@
 
         <div class="box">
             <?php
-                include "../core/Fiche_personne.php";
-                include "../core/Membre.php";
-                include "../core/Abonnement.php";
-
-                $fp = new Fiche_personne();
-                $membre = new Membre();
-                $abo = new Abonnement();
-
-                if ($_POST["method"] === 'delete') {
-                    $membre->deleteById($_POST["id"]);
-                }
-
                 if ($_POST["method"] === 'add') {
                     $membre->addById($_POST["id"], $_POST["add_abo"]);
+                    echo 'Abonnement ajouté : ' . $abo->selectById($_POST["add_abo"]);
+                }
+                if ($_POST["method"] === 'delete') {
+                    $membre->deleteById($_POST["id_fiche_perso"], $_POST["id_abo"]);
+                    echo 'Abonnement supprimé : ' . $abo->selectById($_POST["id_abo"]);
                 }
 
                 foreach ($fp->search($_POST["nom"]) as $fp):
@@ -65,8 +67,8 @@
                             <input name='method' value='add' style='display: none'/>
                             <select name='add_abo'>
                                 <option selected value='-1'>Selectionnez un abonnement</option>";
-                                foreach ($abo->select() as $abo):
-                                    echo "<option value=\"" . $abo["id_abo"] . "\">" . $abo["nom"] . "</option>";
+                                foreach ($abo->select() as $abonnement):
+                                    echo "<option value=\"" . $abonnement["id_abo"] . "\">" . $abonnement["nom"] . "</option>";
                                 endforeach;
                     echo "</select>
                             <input type='submit' value='Ajouter un abonnement'/>                           
@@ -77,11 +79,11 @@
                             <input type='submit' value='Modifier un abonnement'/>                           
                         </form>
                         <form method='post' action='membre.php'>
-                            <input name='id' value='" . $fp["id_fiche_perso"] . "' style='display: none'/>
+                            <input name='id_fiche_perso' value='" . $fp["id_fiche_perso"] . "' style='display: none'/>
+                            <input name='id_abo' value='" . $fp["id_abo"] . "' style='display: none'/>
                             <input name='method' value='delete' style='display: none'/>
                             <input type='submit' value='Supprimer un abonnement'/>                           
                         </form>";
-
                 endforeach;
             ?>
         </div>
