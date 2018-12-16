@@ -1,8 +1,8 @@
 <?php
-class Genre extends Bdd {
+class Distrib extends Bdd {
 
-    public function getGenres() {
-        $query = 'SELECT * FROM genre';
+    public function getDistribs() {
+        $query = 'SELECT * FROM distrib';
         $request = $this->getPDO()->prepare($query);
         $request->execute();
 

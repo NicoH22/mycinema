@@ -36,8 +36,8 @@ main {
 
 .box {
     text-align: center;
-    padding-top: 20px;
-    margin-top: 40px;
+    padding: 20px 0;
+    margin: 40px 0;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 5px 5px 30px cadetblue ;
