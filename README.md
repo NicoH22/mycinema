@@ -1,5 +1,5 @@
 # mycinema
 
-    In progress
+    In progress...
+    Training project on PHP.
 
-Training project on PHP.
